@@ -10,6 +10,7 @@ class TaskPanel(tk.Tk):
         self.minsize(420, 360)
 
         # ===== Top area: entry + Add button =====
+        # ===== Top area: entry + Category + Add button =====
         top = tk.Frame(self, padx=8, pady=8)
         top.pack(fill="x")
 
@@ -17,6 +18,21 @@ class TaskPanel(tk.Tk):
         self.entry = tk.Entry(top, textvariable=self.task_var, font=("Segoe UI", 11))
         self.entry.pack(side="left", fill="x", expand=True, padx=(0, 8))
         self.entry.bind("<Return>", lambda _e: self.add_task())
+
+        # Category selector (Menubutton)
+        self.category_var = tk.StringVar(value="Category")  # default prompt
+        cat_btn = tk.Menubutton(
+            top,
+            textvariable=self.category_var,
+            relief="raised",
+            padx=12, pady=6,
+            bg="#e5e7eb", activebackground="#d1d5db"
+        )
+        cat_menu = tk.Menu(cat_btn, tearoff=0)
+        for cat in ("Home", "Gym", "College"):
+            cat_menu.add_radiobutton(label=cat, variable=self.category_var, value=cat)
+        cat_btn.configure(menu=cat_menu)
+        cat_btn.pack(side="left", padx=(0, 8))
 
         add_btn = tk.Button(
             top,
@@ -30,6 +46,7 @@ class TaskPanel(tk.Tk):
             padx=12, pady=6
         )
         add_btn.pack(side="left")
+
 
         # ===== Middle area: listbox + scrollbar =====
         mid = tk.Frame(self, padx=8)
@@ -104,18 +121,23 @@ class TaskPanel(tk.Tk):
     # --------- actions ----------
     def add_task(self):
         text = self.task_var.get().strip()
+        cat = self.category_var.get().strip()
+
         if not text:
             messagebox.showinfo("Nothing to add", "Please type a task first.")
             return
+        if cat == "Category":  # ensure user selected a category
+            messagebox.showinfo("Pick a category", "Please select a category (Home, Gym, College).")
+            return
 
-        # Format timestamp: 2025-10-12 14:37 (YYYY-MM-DD HH:MM)
-        stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
-        label = f"{text}  —  {stamp}"
+        stamp = datetime.now().strftime("%Y-%m-%d %H:%M")  # e.g., 2025-10-12 14:37
+        label = f"[{cat}] {text}  —  {stamp}"
 
         self.listbox.insert(tk.END, label)
         self.task_var.set("")
         idx = self.listbox.size() - 1
         self.listbox.itemconfig(idx, foreground="black")
+
 
     def delete_selected(self):
         sel = list(self.listbox.curselection())
