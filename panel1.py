@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from datetime import datetime
 
 class TaskPanel(tk.Tk):
     def __init__(self):
@@ -106,10 +107,13 @@ class TaskPanel(tk.Tk):
         if not text:
             messagebox.showinfo("Nothing to add", "Please type a task first.")
             return
-        # Insert at end (unmarked initially)
-        self.listbox.insert(tk.END, text)
+
+        # Format timestamp: 2025-10-12 14:37 (YYYY-MM-DD HH:MM)
+        stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+        label = f"{text}  —  {stamp}"
+
+        self.listbox.insert(tk.END, label)
         self.task_var.set("")
-        # Ensure new item uses default style
         idx = self.listbox.size() - 1
         self.listbox.itemconfig(idx, foreground="black")
 
