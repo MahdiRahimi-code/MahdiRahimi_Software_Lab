@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "category": "Gym",
+    "priority": "Medium",
+    "text": "Workout",
+    "created": "2025-10-19 18:20",
+    "done": true
+  },
+  {
+    "id": 2,
+    "category": "College",
+    "priority": "Urgent",
+    "text": "Study",
+    "created": "2025-10-19 18:22",
+    "done": false
+  },
+  {
+    "id": 3,
+    "category": "Home",
+    "priority": "Medium",
+    "text": "Clean",
+    "created": "2025-10-19 18:23",
+    "done": false
+  },
+  {
+    "id": 4,
+    "category": "College",
+    "priority": "Low",
+    "text": "Homework",
+    "created": "2025-10-19 18:28",
+    "done": false
+  },
+  {
+    "id": 5,
+    "category": "Home",
+    "priority": "Medium",
+    "text": "Buy Gift",
+    "created": "2025-10-19 18:29",
+    "done": false
+  },
+  {
+    "id": 6,
+    "category": "College",
+    "priority": "High",
+    "text": "meeting",
+    "created": "2025-10-19 18:29",
+    "done": false
+  }
+]
