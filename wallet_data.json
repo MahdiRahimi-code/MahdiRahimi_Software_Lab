@@ -1,0 +1,19 @@
+{
+    "balance": 29.5,
+    "transactions": [
+        {
+            "amount": 400.0,
+            "type": "Income",
+            "category": "Salary",
+            "description": "job",
+            "date": "2025-10-26 18:07:28"
+        },
+        {
+            "amount": 4000.0,
+            "type": "Expense",
+            "category": "Entertainment",
+            "description": "No description",
+            "date": "2025-10-26 18:07:40"
+        }
+    ]
+}
